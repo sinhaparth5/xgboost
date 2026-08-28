@@ -1,0 +1,110 @@
+parity ok: all variants match [rand.predef] and each other
+2026-08-28T09:36:06+00:00
+Running ./bench_g_O3
+Run on (4 X 2700 MHz CPU s)
+CPU Caches:
+  L1 Data 48 KiB (x2)
+  L1 Instruction 32 KiB (x2)
+  L2 Unified 2048 KiB (x2)
+  L3 Unified 107520 KiB (x1)
+Load Average: 0.00, 0.01, 0.12
+***WARNING*** Library was built as DEBUG. Timings may be affected.
+-------------------------------------------------------------------------------------------------------------
+Benchmark                                                   Time             CPU   Iterations UserCounters...
+-------------------------------------------------------------------------------------------------------------
+BM_ColSample<xgboost::Philox4x32>/1024_mean              3366 ns         3366 ns           15 items_per_second=297.092k/s
+BM_ColSample<xgboost::Philox4x32>/1024_median            3367 ns         3367 ns           15 items_per_second=297.005k/s
+BM_ColSample<xgboost::Philox4x32>/1024_stddev            2.42 ns         2.42 ns           15 items_per_second=213.46/s
+BM_ColSample<xgboost::Philox4x32>/1024_cv                0.07 %          0.07 %            15 items_per_second=0.07%
+BM_Seq<xgboost::Philox4x32>_mean                         3.07 ns         3.07 ns           15 items_per_second=325.608M/s
+BM_Seq<xgboost::Philox4x32>_median                       3.07 ns         3.07 ns           15 items_per_second=325.54M/s
+BM_Seq<xgboost::Philox4x32>_stddev                      0.002 ns        0.002 ns           15 items_per_second=172.843k/s
+BM_Seq<xgboost::Philox4x32>_cv                           0.05 %          0.05 %            15 items_per_second=0.05%
+BM_ColSample<xgboost_hilo::Philox4x32>/256_mean           854 ns          854 ns           15 items_per_second=1.17148M/s
+BM_ColSample<xgboost_hilo::Philox4x32>/256_median         854 ns          854 ns           15 items_per_second=1.17109M/s
+BM_ColSample<xgboost_hilo::Philox4x32>/256_stddev       0.821 ns        0.826 ns           15 items_per_second=1.1341k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/256_cv            0.10 %          0.10 %            15 items_per_second=0.10%
+BM_ColSample<xgboost_hilo::Philox4x32>/16_mean           59.5 ns         59.5 ns           15 items_per_second=16.8142M/s
+BM_ColSample<xgboost_hilo::Philox4x32>/16_median         59.5 ns         59.5 ns           15 items_per_second=16.8142M/s
+BM_ColSample<xgboost_hilo::Philox4x32>/16_stddev        0.033 ns        0.032 ns           15 items_per_second=9.14132k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/16_cv             0.05 %          0.05 %            15 items_per_second=0.05%
+BM_Seq<std::mt19937>_mean                                1.84 ns         1.84 ns           15 items_per_second=542.855M/s
+BM_Seq<std::mt19937>_median                              1.84 ns         1.84 ns           15 items_per_second=542.716M/s
+BM_Seq<std::mt19937>_stddev                             0.006 ns        0.006 ns           15 items_per_second=1.81451M/s
+BM_Seq<std::mt19937>_cv                                  0.33 %          0.33 %            15 items_per_second=0.33%
+BM_ColSample<std::mt19937>/4096_mean                    12550 ns        12550 ns           15 items_per_second=79.8615k/s
+BM_ColSample<std::mt19937>/4096_median                  12359 ns        12359 ns           15 items_per_second=80.9136k/s
+BM_ColSample<std::mt19937>/4096_stddev                    669 ns          669 ns           15 items_per_second=3.6162k/s
+BM_ColSample<std::mt19937>/4096_cv                       5.33 %          5.33 %            15 items_per_second=4.53%
+BM_ColSample<xgboost_hilo::Philox4x32>/4096_mean        14043 ns        14043 ns           15 items_per_second=71.4174k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/4096_median      13681 ns        13680 ns           15 items_per_second=73.0995k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/4096_stddev        814 ns          814 ns           15 items_per_second=3.81924k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/4096_cv           5.80 %          5.80 %            15 items_per_second=5.35%
+BM_ColSample<xgboost::Philox4x32>/256_mean                853 ns          853 ns           15 items_per_second=1.17235M/s
+BM_ColSample<xgboost::Philox4x32>/256_median              853 ns          853 ns           15 items_per_second=1.17244M/s
+BM_ColSample<xgboost::Philox4x32>/256_stddev            0.454 ns        0.454 ns           15 items_per_second=623.494/s
+BM_ColSample<xgboost::Philox4x32>/256_cv                 0.05 %          0.05 %            15 items_per_second=0.05%
+BM_ColSample<xgboost_hilo::Philox4x32>/64_mean            235 ns          235 ns           15 items_per_second=4.2499M/s
+BM_ColSample<xgboost_hilo::Philox4x32>/64_median          235 ns          235 ns           15 items_per_second=4.24992M/s
+BM_ColSample<xgboost_hilo::Philox4x32>/64_stddev        0.090 ns        0.089 ns           15 items_per_second=1.61166k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/64_cv             0.04 %          0.04 %            15 items_per_second=0.04%
+BM_ColSample<xgboost_spec::Philox4x32>/4096_mean        13841 ns        13840 ns           15 items_per_second=72.4341k/s
+BM_ColSample<xgboost_spec::Philox4x32>/4096_median      13549 ns        13548 ns           15 items_per_second=73.812k/s
+BM_ColSample<xgboost_spec::Philox4x32>/4096_stddev        774 ns          774 ns           15 items_per_second=3.46725k/s
+BM_ColSample<xgboost_spec::Philox4x32>/4096_cv           5.59 %          5.59 %            15 items_per_second=4.79%
+BM_ColSample<std::mt19937>/1024_mean                     4014 ns         4014 ns           15 items_per_second=249.112k/s
+BM_ColSample<std::mt19937>/1024_median                   4014 ns         4014 ns           15 items_per_second=249.132k/s
+BM_ColSample<std::mt19937>/1024_stddev                   2.16 ns         2.16 ns           15 items_per_second=133.863/s
+BM_ColSample<std::mt19937>/1024_cv                       0.05 %          0.05 %            15 items_per_second=0.05%
+BM_Seq<xgboost_spec::Philox4x32>_mean                    3.07 ns         3.07 ns           15 items_per_second=325.954M/s
+BM_Seq<xgboost_spec::Philox4x32>_median                  3.07 ns         3.07 ns           15 items_per_second=325.905M/s
+BM_Seq<xgboost_spec::Philox4x32>_stddev                 0.002 ns        0.002 ns           15 items_per_second=180.154k/s
+BM_Seq<xgboost_spec::Philox4x32>_cv                      0.06 %          0.06 %            15 items_per_second=0.06%
+BM_ColSample<xgboost_spec::Philox4x32>/256_mean           853 ns          853 ns           15 items_per_second=1.17242M/s
+BM_ColSample<xgboost_spec::Philox4x32>/256_median         853 ns          853 ns           15 items_per_second=1.17249M/s
+BM_ColSample<xgboost_spec::Philox4x32>/256_stddev       0.773 ns        0.768 ns           15 items_per_second=1.05563k/s
+BM_ColSample<xgboost_spec::Philox4x32>/256_cv            0.09 %          0.09 %            15 items_per_second=0.09%
+BM_ColSample<std::mt19937>/16_mean                       1622 ns         1622 ns           15 items_per_second=616.592k/s
+BM_ColSample<std::mt19937>/16_median                     1621 ns         1621 ns           15 items_per_second=616.755k/s
+BM_ColSample<std::mt19937>/16_stddev                     1.29 ns         1.29 ns           15 items_per_second=488.344/s
+BM_ColSample<std::mt19937>/16_cv                         0.08 %          0.08 %            15 items_per_second=0.08%
+BM_ColSample<xgboost::Philox4x32>/4096_mean             13566 ns        13565 ns           15 items_per_second=73.7244k/s
+BM_ColSample<xgboost::Philox4x32>/4096_median           13515 ns        13515 ns           15 items_per_second=73.9924k/s
+BM_ColSample<xgboost::Philox4x32>/4096_stddev             136 ns          136 ns           15 items_per_second=727.296/s
+BM_ColSample<xgboost::Philox4x32>/4096_cv                1.01 %          1.01 %            15 items_per_second=0.99%
+BM_ColSample<xgboost_hilo::Philox4x32>/1024_mean         3367 ns         3367 ns           15 items_per_second=296.984k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/1024_median       3368 ns         3368 ns           15 items_per_second=296.95k/s
+BM_ColSample<xgboost_hilo::Philox4x32>/1024_stddev       2.49 ns         2.49 ns           15 items_per_second=220.078/s
+BM_ColSample<xgboost_hilo::Philox4x32>/1024_cv           0.07 %          0.07 %            15 items_per_second=0.07%
+BM_ColSample<xgboost::Philox4x32>/64_mean                 235 ns          235 ns           15 items_per_second=4.2509M/s
+BM_ColSample<xgboost::Philox4x32>/64_median               235 ns          235 ns           15 items_per_second=4.25085M/s
+BM_ColSample<xgboost::Philox4x32>/64_stddev             0.121 ns        0.121 ns           15 items_per_second=2.18542k/s
+BM_ColSample<xgboost::Philox4x32>/64_cv                  0.05 %          0.05 %            15 items_per_second=0.05%
+BM_ColSample<xgboost_spec::Philox4x32>/16_mean           59.5 ns         59.5 ns           15 items_per_second=16.8029M/s
+BM_ColSample<xgboost_spec::Philox4x32>/16_median         59.5 ns         59.5 ns           15 items_per_second=16.8042M/s
+BM_ColSample<xgboost_spec::Philox4x32>/16_stddev        0.019 ns        0.019 ns           15 items_per_second=5.23684k/s
+BM_ColSample<xgboost_spec::Philox4x32>/16_cv             0.03 %          0.03 %            15 items_per_second=0.03%
+BM_ColSample<std::mt19937>/64_mean                       1739 ns         1739 ns           15 items_per_second=574.942k/s
+BM_ColSample<std::mt19937>/64_median                     1739 ns         1739 ns           15 items_per_second=574.937k/s
+BM_ColSample<std::mt19937>/64_stddev                    0.789 ns        0.797 ns           15 items_per_second=263.405/s
+BM_ColSample<std::mt19937>/64_cv                         0.05 %          0.05 %            15 items_per_second=0.05%
+BM_ColSample<xgboost_spec::Philox4x32>/1024_mean         3364 ns         3364 ns           15 items_per_second=297.257k/s
+BM_ColSample<xgboost_spec::Philox4x32>/1024_median       3366 ns         3366 ns           15 items_per_second=297.128k/s
+BM_ColSample<xgboost_spec::Philox4x32>/1024_stddev       3.11 ns         3.09 ns           15 items_per_second=272.647/s
+BM_ColSample<xgboost_spec::Philox4x32>/1024_cv           0.09 %          0.09 %            15 items_per_second=0.09%
+BM_Seq<xgboost_hilo::Philox4x32>_mean                    3.07 ns         3.07 ns           15 items_per_second=325.56M/s
+BM_Seq<xgboost_hilo::Philox4x32>_median                  3.07 ns         3.07 ns           15 items_per_second=325.499M/s
+BM_Seq<xgboost_hilo::Philox4x32>_stddev                 0.001 ns        0.001 ns           15 items_per_second=153.832k/s
+BM_Seq<xgboost_hilo::Philox4x32>_cv                      0.05 %          0.05 %            15 items_per_second=0.05%
+BM_ColSample<std::mt19937>/256_mean                      2201 ns         2201 ns           15 items_per_second=454.382k/s
+BM_ColSample<std::mt19937>/256_median                    2201 ns         2200 ns           15 items_per_second=454.442k/s
+BM_ColSample<std::mt19937>/256_stddev                    2.45 ns         2.46 ns           15 items_per_second=507.939/s
+BM_ColSample<std::mt19937>/256_cv                        0.11 %          0.11 %            15 items_per_second=0.11%
+BM_ColSample<xgboost_spec::Philox4x32>/64_mean            235 ns          235 ns           15 items_per_second=4.24811M/s
+BM_ColSample<xgboost_spec::Philox4x32>/64_median          235 ns          235 ns           15 items_per_second=4.24792M/s
+BM_ColSample<xgboost_spec::Philox4x32>/64_stddev        0.099 ns        0.098 ns           15 items_per_second=1.7765k/s
+BM_ColSample<xgboost_spec::Philox4x32>/64_cv             0.04 %          0.04 %            15 items_per_second=0.04%
+BM_ColSample<xgboost::Philox4x32>/16_mean                61.5 ns         61.5 ns           15 items_per_second=16.2669M/s
+BM_ColSample<xgboost::Philox4x32>/16_median              61.5 ns         61.5 ns           15 items_per_second=16.2667M/s
+BM_ColSample<xgboost::Philox4x32>/16_stddev             0.047 ns        0.047 ns           15 items_per_second=12.4057k/s
+BM_ColSample<xgboost::Philox4x32>/16_cv                  0.08 %          0.08 %            15 items_per_second=0.08%
