@@ -1,0 +1,51 @@
+name: philox multiply probe
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [philox-multiply-probe]
+
+jobs:
+  codegen:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: "msvc",  os: windows-latest }
+          - { name: "gcc",   os: ubuntu-latest }
+          - { name: "clang", os: ubuntu-latest }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Emit assembly and count multiplies (MSVC)
+        if: matrix.name == 'msvc'
+        shell: cmd
+        run: |
+          for /f "usebackq tokens=*" %%i in (`"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath`) do set VSPATH=%%i
+          call "%VSPATH%\VC\Auxiliary\Build\vcvars64.bat"
+          cl /std:c++20 /O2 /FAs /c /I include /I ci_probe ci_probe\probe_asis.cpp || exit /b 1
+          cl /std:c++20 /O2 /FAs /c /I include /I ci_probe ci_probe\probe_spec.cpp || exit /b 1
+          cl /std:c++20 /Od /FAs /c /I include /I ci_probe ci_probe\probe_asis.cpp /Faprobe_asis_od.asm || exit /b 1
+          python ci_probe\count_muls.py probe_asis.asm "MSVC /O2 as-is"
+          python ci_probe\count_muls.py probe_spec.asm "MSVC /O2 specialised"
+          python ci_probe\count_muls.py probe_asis_od.asm "MSVC /Od as-is"
+
+      - name: Emit assembly and count multiplies (GCC)
+        if: matrix.name == 'gcc'
+        run: |
+          g++ --version | head -1
+          g++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_asis.cpp -o asis.s
+          g++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_spec.cpp -o spec.s
+          python3 ci_probe/count_muls.py asis.s "GCC -O3 as-is"
+          python3 ci_probe/count_muls.py spec.s "GCC -O3 specialised"
+
+      - name: Emit assembly and count multiplies (clang)
+        if: matrix.name == 'clang'
+        run: |
+          clang++ --version | head -1
+          clang++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_asis.cpp -o asis.s
+          clang++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_spec.cpp -o spec.s
+          python3 ci_probe/count_muls.py asis.s "clang -O3 as-is"
+          python3 ci_probe/count_muls.py spec.s "clang -O3 specialised"
