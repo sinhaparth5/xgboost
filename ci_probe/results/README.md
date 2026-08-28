@@ -20,6 +20,12 @@ host, which is how they are used. Absolute cycles do not transfer.
 `{g,clang}-{O0,O2,O3}.json` are Google Benchmark output for
 `ci_probe/bench_rng.cpp`; the `.txt` beside each is the console form.
 
+`philox.json` and `mt19937.json` are end-to-end training time from
+`ci_probe/bench_train.cpp`, driven by `ci_probe/run_train.sh` on a
+c3-standard-8. The two builds differ only in the RandomEngine typedef in
+`include/xgboost/context.h`. `train-environment.txt` is the capture for
+that run.
+
 ## What they show
 
 1. "1/10 of mt" reproduces at -O0 and only there: Philox lands at 0.04-0.10x
@@ -38,3 +44,10 @@ host, which is how they are used. Absolute cycles do not transfer.
    constructs a fresh RandomEngine per call, so mt19937 pays a ~1.6us state
    init to serve as few as 16 draws. Philox is 27x ahead at 16 features, 7.4x
    at 64, 2.6x at 256, and does not fall behind until past ~2000.
+
+5. None of it reaches the training loop in a way anyone would notice. Over 100
+   boosting rounds on 20000x128 with colsample_bynode=0.5, Philox comes in at
+   2.0805s against 2.0883s, which is 7.8ms on a two-second run. The right
+   reading of that is no regression rather than a speedup: 0.37% is too small
+   to claim as a benefit, and the config was chosen to make ColSample run on
+   every node. What it rules out is a throughput cost at the workload level.
