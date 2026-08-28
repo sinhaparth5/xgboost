@@ -25,7 +25,7 @@ for variant in philox mt19937; do
 
     g++ -std=c++20 -O2 -I include -I dmlc-core/include \
         ci_probe/bench_train.cpp -o "bench_train_$variant" \
-        -L build -lxgboost -Wl,-rpath,"$PWD/build"
+        -L lib -lxgboost -Wl,-rpath,"$PWD/lib"
 
     # rows features rounds reps threads
     "./bench_train_$variant" 20000 128 100 9 4 > "$OUT/$variant.json"
