@@ -27,9 +27,11 @@ jobs:
           call "%VSPATH%\VC\Auxiliary\Build\vcvars64.bat"
           cl /std:c++20 /O2 /FAs /c /I include /I ci_probe ci_probe\probe_asis.cpp || exit /b 1
           cl /std:c++20 /O2 /FAs /c /I include /I ci_probe ci_probe\probe_spec.cpp || exit /b 1
+          cl /std:c++20 /O2 /FAs /c /I include /I ci_probe ci_probe\probe_hilo.cpp || exit /b 1
           cl /std:c++20 /Od /FAs /c /I include /I ci_probe ci_probe\probe_asis.cpp /Faprobe_asis_od.asm || exit /b 1
           python ci_probe\count_muls.py probe_asis.asm "MSVC /O2 as-is"
           python ci_probe\count_muls.py probe_spec.asm "MSVC /O2 specialised"
+          python ci_probe\count_muls.py probe_hilo.asm "MSVC /O2 hilo"
           python ci_probe\count_muls.py probe_asis_od.asm "MSVC /Od as-is"
 
       - name: Emit assembly and count multiplies (GCC)
@@ -38,8 +40,10 @@ jobs:
           g++ --version | head -1
           g++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_asis.cpp -o asis.s
           g++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_spec.cpp -o spec.s
+          g++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_hilo.cpp -o hilo.s
           python3 ci_probe/count_muls.py asis.s "GCC -O3 as-is"
           python3 ci_probe/count_muls.py spec.s "GCC -O3 specialised"
+          python3 ci_probe/count_muls.py hilo.s "GCC -O3 hilo"
 
       - name: Emit assembly and count multiplies (clang)
         if: matrix.name == 'clang'
@@ -47,5 +51,7 @@ jobs:
           clang++ --version | head -1
           clang++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_asis.cpp -o asis.s
           clang++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_spec.cpp -o spec.s
+          clang++ -std=c++20 -O3 -I include -I ci_probe -S ci_probe/probe_hilo.cpp -o hilo.s
           python3 ci_probe/count_muls.py asis.s "clang -O3 as-is"
           python3 ci_probe/count_muls.py spec.s "clang -O3 specialised"
+          python3 ci_probe/count_muls.py hilo.s "clang -O3 hilo"
